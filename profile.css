@@ -1,11 +1,10 @@
 body{
     font-size: 13pt;
-}
-#profile{
-    background-color: darkgreen;
+    color: #1A1E26;
+    background-color:#f8f5f0;
 }
 #personalInfo{
-    background-color: rgb(243, 243, 243);
+    background-color:#f8f5f0;
 }
 
 #names{
@@ -37,29 +36,61 @@ h2{
 #personalInfo{
     display:flex;
     flex-direction: row;
+    border-bottom:1px solid #BFA07A;
 }
 
 #profileInfo p {
     margin-left:5%;
 }
 #profileInfo{
-    background-color: cadetblue;
+    background-color:#f8f5f0;
     width:30%;
     float:left;
+    border-right:1px solid #BFA07A ;
+    padding-right:10px;
 }
 
 #courses{
-    background-color: darkcyan;
-    margin-left:30%;
+    background-color:#f8f5f0;
+    width:50%;
 }
 
+#courses header{
+    margin-left:4%;
+}
 #courses h2, ul{
-    margin-left:5%;
+    margin-left:10%;
+}
+#line{
+    background-color:#BFA07A ;
+    border:1px solid #BFA07A ;
+}
+a{
+    text-decoration: none;
+    color: #1A1E26;
 }
 
-a{
-        color: rgb(18, 75, 197);
-        text-decoration: none;
-      
+
+#container{
+    display:flex;
+    flex-direction: row;
+    height:500px;
+}
+
+nav{
+    margin-bottom:0;
+    background-color: #BFA07A;
+    color: #1A1E26;
+    min-height:50px;
+}
+
+html{
+overflow: hidden;
+}
+
+#uni{
+    background-image: url("images/lib3.png");
+    min-height:50%;
+    width:20%;
 }
 

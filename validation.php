@@ -33,6 +33,7 @@ if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
             $_SESSION['year']=$result['year'];
             $_SESSION['group']=$result['yeargroup'];
             $_SESSION['email']= $result['email'];
+            $_SESSION['name']= $result['name'];
         }
     }
   

@@ -11,17 +11,20 @@
 
 .center *{
     margin-left: 10%;
-    margin-top:10px;
+    margin-top:20px;
     margin-bottom:10px;
     width:80%;
-    
 }
 
+.center{
+    min-height: 300px;
+    border: 3px solid white;
+}
 .error{
     display: none;
+    font-weight: bold;
     color: rgb(248, 12, 12);
 }
-
 
 p {
     margin: 0;
@@ -29,7 +32,27 @@ p {
 }
 
 h1{
-    font-size: 18pt;
+    font-size: 20pt;
     text-align: center;
 }
 
+body{
+    background-image: url("images/lib4.png");
+    color:white;
+   
+}
+
+#login{
+    backdrop-filter: blur(13px);
+}
+
+button{
+    border: none;
+    text-decoration: none;
+    height:23px;
+    color:#1A1E26;
+    font-family: 'Montserrat';
+    font-size: 14pt;
+    font-weight: bold;
+    border-radius:3px;
+}

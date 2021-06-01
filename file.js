@@ -29,6 +29,7 @@ function validate(){
      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
      request.send("username="+username+"&password="+password);
      console.log(username);
+     
 return false;
  
 }
