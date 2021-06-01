@@ -15,7 +15,7 @@ function validate(){
             
                 if(request.response == ""){
                     console.log("a" + request.response+ "a");
-                    location.href = 'index.php';
+                    location.href = 'http://localhost/project/index.php';
                 }
                 document.getElementById("error").innerText = request.response;
                 document.getElementById("error").style = "display:block";  
@@ -25,7 +25,7 @@ function validate(){
         
      };
     
-     request.open("POST","validation.php",true);
+     request.open("POST","http://localhost/project/validation.php",true);
      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
      request.send("username="+username+"&password="+password);
 

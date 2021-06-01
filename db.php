@@ -5,11 +5,7 @@ class database{
     
     public function __construct($dbtype, $host, $dbname, $user, $password){
         try{
-             $this->connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $password,
-        [
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
+             $this->connection = new PDO("$dbtype:host=$host;dbname=$dbname;",$user,$password);
         }
         catch(PDOException $e){
             echo $e->getMessage();

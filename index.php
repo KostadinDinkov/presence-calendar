@@ -1,4 +1,6 @@
-
+<?php
+    require("./security.php");
+?>
 
 <!DOCTYPE html>
 <html lang="bg">

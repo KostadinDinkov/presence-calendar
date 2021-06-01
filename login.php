@@ -1,19 +1,7 @@
 
 <?php
-if(isset($_GET['err'])){
-    
-    echo '<script type="text/javascript">',
-    'jsfunction();',
-    '</script>';
-
-    if($_GET['err']==0){
-        echo "Попълнете всички полета.";
-    }else if($_GET['err']==1){
-        echo "Не съществува такова потребителско име.";
-    }else {
-        echo "Грешна парола.";
-    }
-}
+     session_start();
+     session_regenerate_id(true);
 
 ?>
 
