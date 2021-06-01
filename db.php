@@ -1,6 +1,6 @@
 <?php
 
-class database{
+class Database{
     private $connection;
     
     public function __construct($dbtype, $host, $dbname, $user, $password){
@@ -17,6 +17,5 @@ class database{
     }
 
 }
-
 
 ?>
