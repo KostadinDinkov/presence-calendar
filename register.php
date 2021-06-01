@@ -16,7 +16,6 @@
         $username = $fn;
         $password = password_hash($fn, PASSWORD_ARGON2ID);
     
-        
         $sql = 'INSERT INTO `users` (`fn`, `email`, `name`, `username`, `year`, `yeargroup`, `spec`, `pass`) VALUES (?, ?, ?, ?, ?, ?, ?, ?);';
         $prepared = $connection->prepare($sql);
         $prepared->execute([$fn,$email,$name,$username,$year,$group,$specialty,$password]);
