@@ -1,0 +1,65 @@
+body{
+    font-size: 13pt;
+}
+#profile{
+    background-color: darkgreen;
+}
+#personalInfo{
+    background-color: rgb(243, 243, 243);
+}
+
+#names{
+    font-size: 25pt;
+}
+
+#picture{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin:15px;
+      
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      
+}
+
+header{
+    font-size:20pt;
+    font-weight: bold;
+}
+
+h2{
+    font-size:15pt;
+    font-weight: bold;
+}
+
+#personalInfo{
+    display:flex;
+    flex-direction: row;
+}
+
+#profileInfo p {
+    margin-left:5%;
+}
+#profileInfo{
+    background-color: cadetblue;
+    width:30%;
+    float:left;
+}
+
+#courses{
+    background-color: darkcyan;
+    margin-left:30%;
+}
+
+#courses h2, ul{
+    margin-left:5%;
+}
+
+a{
+        color: rgb(18, 75, 197);
+        text-decoration: none;
+      
+}
+
