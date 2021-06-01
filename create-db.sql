@@ -19,8 +19,8 @@ CREATE TABLE users (
 
 CREATE TABLE userAttends (
  username VARCHAR(255),
- subject VARCHAR(255),
- PRIMARY KEY (username, subject)
+ course VARCHAR(255),
+ PRIMARY KEY (username, course)
 );
 
 
@@ -28,7 +28,7 @@ CREATE TABLE attendanceCheck (
  checkID INT NOT NULL UNIQUE AUTO_INCREMENT,
  checktime DATETIME NOT NULL,
  eventName VARCHAR(255),
- subject VARCHAR(255),
+ course VARCHAR(255),
  PRIMARY KEY (checkID)
 );
 
@@ -36,4 +36,10 @@ CREATE TABLE peopleAtEventCheck (
  attendanceCheckID INT NOT NULL,
  username VARCHAR(255) NOT NULL,
  PRIMARY KEY (attendanceCheckID, username)
+);
+
+CREATE TABLE courses (
+ id INT NOT NULL UNIQUE AUTO_INCREMENT,
+ name VARCHAR(255),
+ PRIMARY KEY (id)
 );

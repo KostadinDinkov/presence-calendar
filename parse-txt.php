@@ -27,6 +27,12 @@ if (($handle = fopen($file, "r")) !== FALSE) {
   	$people[$i - 6] = explode(" ", $lines[$i]);
   }
 
+  $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime AND eventName = :event");
+  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[1] . "-" .$meetingInfo[0] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":event" => $meetingName));
+  if($statement->fetch(PDO::FETCH_ASSOC)){
+  	fclose($handle);
+  	exit();
+  };
 
   $statement = $connection->getConnection()->prepare("INSERT INTO attendancecheck(checktime, eventName) VALUES (:checktime, :event)");
   $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[1] . "-" .$meetingInfo[0] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":event" => $meetingName));
