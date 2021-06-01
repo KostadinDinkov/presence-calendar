@@ -10,10 +10,10 @@
 
 if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
 
-    $username=$_POST["username"];
+    $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $sql="SELECT pass FROM `users` WHERE username=?";
+    $sql="SELECT * FROM `users` WHERE username=?";
     $prepared = $connection->prepare($sql);
     $prepared->execute([$username]);
     $result= $prepared->fetch(PDO::FETCH_ASSOC);
@@ -28,6 +28,11 @@ if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
             echo "Грешна парола.";
         }else{
             $_SESSION['username']=$username;
+            $_SESSION['fn']=$result['fn'];
+            $_SESSION['spec']=$result['spec'];
+            $_SESSION['year']=$result['year'];
+            $_SESSION['group']=$result['yeargroup'];
+            $_SESSION['email']= $result['email'];
         }
     }
   
