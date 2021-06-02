@@ -39,8 +39,9 @@ h1{
 body{
     background-image: url("images/lib4.png");
     color:white;
-   display: flex;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 #login{
