@@ -8,8 +8,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/profile.css">
     <script src="file.js"></script>
  </head>
 <body>

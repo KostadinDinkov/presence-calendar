@@ -92,7 +92,7 @@ html{
 }
 
 #uni{
-    background-image: url("images/lib3.png");
+    background-image: url("../images/lib3.png");
     min-height:50%;
     width:20%;
 }

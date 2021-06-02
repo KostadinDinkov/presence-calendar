@@ -76,9 +76,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="profile.css">
-    <script src="validation.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="js/validation.js"></script>
  </head>
 <body>
 <section id="personalInfo" >

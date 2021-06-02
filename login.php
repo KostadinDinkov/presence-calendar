@@ -10,8 +10,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="file.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/validation.js"></script>
 
 </head>
 
