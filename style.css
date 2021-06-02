@@ -13,7 +13,7 @@
     margin-left: 10%;
     margin-top:20px;
     margin-bottom:10px;
-    width:80%;
+    width:80%;    
 }
 
 .center{
@@ -39,7 +39,8 @@ h1{
 body{
     background-image: url("images/lib4.png");
     color:white;
-   
+   display: flex;
+    justify-content: center;
 }
 
 #login{
