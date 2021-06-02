@@ -41,7 +41,7 @@
         $connection = $db->getConnection();
         $sql="select name,id from courses join userattends on courses.id = userattends.courseID where username=? and userattends.mandatory=?";
         $prepared = $connection->prepare($sql);
-        $prepared->execute([$_SESSION['username'],0]);
+        $prepared->execute([$_SESSION['username'],1]);
         $result = $prepared->fetch(PDO::FETCH_ASSOC);
         while($result){
             $id = $result["id"];
@@ -58,7 +58,7 @@
     <?php
         
         $prepared = $connection->prepare($sql);
-        $prepared->execute([$_SESSION['username'],1]);
+        $prepared->execute([$_SESSION['username'],0]);
         $result = $prepared->fetch(PDO::FETCH_ASSOC);
         while($result){
             $id = $result["id"];
