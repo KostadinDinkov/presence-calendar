@@ -1,6 +1,7 @@
 
 <?php
     require("./security.php");
+    require_once 'db.php';
 ?>
 <!DOCTYPE html>
 <html lang="bg">
@@ -15,8 +16,8 @@
     <figure>
     <img src="images/person.png" alt="home"  id="picture">
     </figure>
-    <p style="margin-left:10px ;font-size:15pt">Добре дошли, </p>
-    <p id ="names" style="margin-bottom:10px">Виктория Лазарова</p>
+    <p style="margin-left:10px ;font-size:15pt">Добре дошли,</span> </p>
+    <p id ="names" style="margin-bottom:10px"><?php echo $_SESSION['name'] ?></p>
 </section>
 <div id="container" style="margin-top:10px">
 <section id="profileInfo">
@@ -33,15 +34,38 @@
     <header>Записани курсове</header>
     <h2>Задължителни курсове</h2>
     <ul>
-    <li>Web технологии, летен семестър 2020/2021</li>
-    <li>Web технологии, летен семестър 2020/2021</li>
-    <li>Web технологии, летен семестър 2020/2021</li>
+    <?php
+        
+        $db = new Database('mysql','localhost','attendances','root',''); 
+        $connection = $db->getConnection();
+        $sql="select name from courses join userattends on courses.id = userattends.courseID where username=? and userattends.mandatory=?";
+        $prepared = $connection->prepare($sql);
+        $prepared->execute([$_SESSION['username'],0]);
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        while($result){
+            echo "<li>";
+            echo "<a href=courses.php>";
+            echo $result["name"];
+            echo "</li>";
+            $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        }
+    ?>
     </ul>
     <h2>Избираеми дисциплини</h2>
     <ul>
-    <li>Web технологии, летен семестър 2020/2021</li>
-    <li>Web технологии, летен семестър 2020/2021</li>
-    <li>Web технологии, летен семестър 2020/2021</li>
+    <?php
+        
+        $prepared = $connection->prepare($sql);
+        $prepared->execute([$_SESSION['username'],1]);
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        while($result){
+            echo "<li>";
+            echo "<a href=courses.php>";
+            echo $result["name"];
+            echo "</a></li>";
+            $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        }
+    ?>
     </ul>
 </section>
 <div id="uni"></div>

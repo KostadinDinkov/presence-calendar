@@ -19,9 +19,9 @@ CREATE TABLE users (
 
 CREATE TABLE userAttends (
  username VARCHAR(255),
- course VARCHAR(255),
+ courseID VARCHAR(255),
  mandatory INT,
- PRIMARY KEY (username, course)
+ PRIMARY KEY (username, courseID)
 );
 
 
