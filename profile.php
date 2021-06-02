@@ -7,6 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="profile.css">
     <script src="file.js"></script>
  </head>

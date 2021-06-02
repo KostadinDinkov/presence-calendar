@@ -42,12 +42,15 @@ h2{
 #profileInfo p {
     margin-left:5%;
 }
+
 #profileInfo{
     background-color:#f8f5f0;
     width:30%;
+    margin-left: 10px;
     float:left;
     border-right:1px solid #BFA07A ;
     padding-right:10px;
+    
 }
 
 #courses{
