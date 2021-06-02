@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="profile.css">
-    <script src="file.js"></script>
+    <script src="validation.js"></script>
  </head>
 <body>
 <section id="personalInfo" >
