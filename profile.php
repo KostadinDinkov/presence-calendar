@@ -38,13 +38,14 @@
         
         $db = new Database('mysql','localhost','attendances','root',''); 
         $connection = $db->getConnection();
-        $sql="select name from courses join userattends on courses.id = userattends.courseID where username=? and userattends.mandatory=?";
+        $sql="select name,id from courses join userattends on courses.id = userattends.courseID where username=? and userattends.mandatory=?";
         $prepared = $connection->prepare($sql);
         $prepared->execute([$_SESSION['username'],0]);
         $result = $prepared->fetch(PDO::FETCH_ASSOC);
         while($result){
+            $id = $result["id"];
             echo "<li>";
-            echo "<a href=courses.php>";
+            echo "<a href=courses.php?id="."$id".">";
             echo $result["name"];
             echo "</li>";
             $result = $prepared->fetch(PDO::FETCH_ASSOC);
@@ -59,8 +60,9 @@
         $prepared->execute([$_SESSION['username'],1]);
         $result = $prepared->fetch(PDO::FETCH_ASSOC);
         while($result){
+            $id = $result["id"];
             echo "<li>";
-            echo "<a href=courses.php>";
+            echo "<a href=courses.php?id="."$id".">";
             echo $result["name"];
             echo "</a></li>";
             $result = $prepared->fetch(PDO::FETCH_ASSOC);

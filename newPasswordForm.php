@@ -15,7 +15,7 @@
 <body>
     <div id="login" class="center">
     <h1>Промяна на парола</h1>
-    <form id="changePassword" action="newPasswordForm.php" method="post">
+    <form id="changePassword" action="newPasswordForm.php" method="post" onsubmit="return false;">
             <label for="password">Стара парола</label>
             <input type="password" id="oldPassword" name="oldPassword">
             <label for="password">Нова парола</label>
