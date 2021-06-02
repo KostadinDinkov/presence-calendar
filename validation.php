@@ -34,6 +34,7 @@ if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
             $_SESSION['group']=$result['yeargroup'];
             $_SESSION['email']= $result['email'];
             $_SESSION['name']= $result['name'];
+            $_SESSION['role']=$result['role'];
         }
     }
   
