@@ -14,7 +14,6 @@ function checkPasswords(){
     if(request.status == 200){
         
             if(request.response == ""){
-                console.log("a" + request.response+ "a");
                 location.href = 'login.php';
             }
             document.getElementById("errors").innerText = request.response;
