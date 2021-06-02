@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS attendances;
 USE attendances;
 
 CREATE TABLE users (
- fn INT UNIQUE,
+ fn INT,
  email VARCHAR(255) UNIQUE,
  name VARCHAR(255),
  username VARCHAR(255) NOT NULL UNIQUE,
