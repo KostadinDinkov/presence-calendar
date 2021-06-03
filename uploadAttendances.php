@@ -1,8 +1,9 @@
+
 <?php
+function parseFile($file){
 require_once('db.php');
 
 $row = 1;
-$file = "uploads/sample.txt";
 $meetingAndTime;
 $meetingTime;
 $meetingName;
@@ -18,6 +19,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
    	$i++;
   }
 
+  echo $lines[3];
   $meetingAndTime = explode("meeting ", $lines[3], 2)[1];
   $meetingName = explode(" at ", $meetingAndTime)[0];
 
@@ -55,6 +57,34 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
   fclose($handle);
 }
+}
+
+
+?>
+<?php
+$uploadDir = "uploads/";
+$filePath = $uploadDir . basename($_FILES["uploadFile"]["name"]);
+$fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+if (file_exists($filePath)) {
+  echo "Sorry, file already exists.";
+  return;
+}
+
+
+if($fileExtension != "txt" && $fileExtension != "csv") {
+  echo "Sorry, only TXT and CSV files are allowed at the moment.";
+  return;
+}
+
+  if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $filePath)) {
+    echo "The file ". htmlspecialchars( basename( $_FILES["uploadFile"]["name"])). " has been uploaded.";
+    parseFile($filePath);
+    return;
+
+  } else {
+    echo "Sorry, there was an error uploading your file.";
+  }
 
 
 ?>
