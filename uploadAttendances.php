@@ -19,14 +19,14 @@ if (($handle = fopen($file, "r")) !== FALSE) {
    	$i++;
   }
 
-  echo $lines[3];
-  $meetingAndTime = explode("meeting ", $lines[3], 2)[1];
+  echo $lines[0];
+  $meetingAndTime = explode("meeting ", $lines[0], 2)[1];
   $meetingName = explode(" at ", $meetingAndTime)[0];
 
   $meetingInfo = preg_split("/(:| |\/)/", explode(" at ", $meetingAndTime)[1]);
 
-  for ($i = 6; strlen($lines[$i]) > 3 ; $i++) { 
-  	$people[$i - 6] = explode(" ", $lines[$i]);
+  for ($i = 3; strlen($lines[$i]) > 3 ; $i++) { 
+  	$people[$i - 3] = explode(" ", $lines[$i]);
   }
 
   $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime AND eventName = :event");
@@ -50,6 +50,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
   	$statement->execute(array(":name" => trim($people[$i][0] . " " . $people[$i][1])));
 
   	$username = $statement->fetch(PDO::FETCH_ASSOC)['username'];
+    if(!isset($username)) continue;
 
   	$statement = $connection->getConnection()->prepare("INSERT INTO peopleateventcheck(attendanceCheckID, username) VALUES (:checkID, :username)");
   	$statement->execute(array(":checkID" => $checkID, ":username" => $username));

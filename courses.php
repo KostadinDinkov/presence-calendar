@@ -23,7 +23,7 @@
         $result = $prepared->fetch(PDO::FETCH_ASSOC)['name'];
         echo($result);
     ?>
-<form action="upload2.php" method="post" enctype="multipart/form-data">
+<form action="uploadAttendances.php" method="post" enctype="multipart/form-data">
   <input type="file" name="uploadFile" id="fileToUpload">
   <button id="parseButton">Качи bbb файл</button>
 </form>
