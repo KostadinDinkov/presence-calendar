@@ -13,8 +13,8 @@
     <script src="file.js"></script>
  </head>
 <body>
-    <h1> Присъствие на <?php echo $_SESSION['name'] ?> <br>
-    за курс: <?php 
+    <p> Присъствие на <?php echo $_SESSION['name'] ?> за курс:</p>
+     <?php 
         $db = new Database('mysql','localhost','attendances','root',''); 
         $connection = $db->getConnection();
         $sql="SELECT name FROM courses  where id = ?";
@@ -23,7 +23,7 @@
         $result = $prepared->fetch(PDO::FETCH_ASSOC)['name'];
         echo($result);
     ?>
-<form action="upload2.php" method="post" enctype="multipart/form-data">
+<form action="uploadAttendance.php" method="post" enctype="multipart/form-data">
   <input type="file" name="uploadFile" id="fileToUpload">
   <button id="parseButton">Качи bbb файл</button>
 </form>
