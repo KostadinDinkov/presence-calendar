@@ -28,8 +28,6 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
 ?>
 
 <?php
-
-
     function addTutor($line,$connection){
 
         $array = preg_split('/[\t]/', $line);
@@ -37,8 +35,8 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
         $name = $array[0];
         $faculty = $array[1];
         $email = $array[2];
-        $username = $name;
-        $password = password_hash($name, PASSWORD_ARGON2ID);
+        $username = explode('@',$email)[0];
+        $password = password_hash($username, PASSWORD_ARGON2ID);
         $sql = 'INSERT INTO `users` (`email`, `name`, `username`,`faculty`, `pass`,`role`) VALUES (?, ?,?, ?, ?, ?);';
         $prepared = $connection->prepare($sql);
         $prepared->execute([$email,$name,$username,$faculty,$password,"tutor"]);
@@ -54,7 +52,6 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
         $handle = fopen($file, "r");
         if ($handle) {
             
-            $line = fgets($handle);
             while (!feof($handle)) {
                 $line = trim(fgets($handle));
                 if($line!=''){

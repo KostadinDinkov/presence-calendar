@@ -19,8 +19,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
    	$i++;
   }
 
-  echo $lines[3];
-  $meetingAndTime = explode("meeting ", $lines[3], 2)[1];
+  $meetingAndTime = explode("meeting ", $lines[0], 2)[1];
   $meetingName = explode(" at ", $meetingAndTime)[0];
 
   $meetingInfo = preg_split("/(:| |\/)/", explode(" at ", $meetingAndTime)[1]);
