@@ -65,5 +65,11 @@ INSERT INTO userattends(username, courseID, mandatory) VALUES
 	("62281", 1, 1),
 	("62281", 4, 0);
 
+INSERT INTO userattends(username, courseID, mandatory) VALUES
+	(milen, 1, 1),
+	(milko, 2, 1),
+	(irena, 4, 1),
+	(stoqn, 3, 1);
+
 
  

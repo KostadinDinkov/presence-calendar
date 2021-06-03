@@ -5,9 +5,6 @@ function checkPasswords(){
 
     document.getElementById("errors").style = "display:none";
 
-    console.log(oldPassword);
-    console.log(newPassword);
-    console.log(repeatPassword);
 
    var request = new XMLHttpRequest();
     request.onload = function (){
@@ -23,6 +20,7 @@ function checkPasswords(){
     }
     
  };
+ 
  request.open("POST","passwordValidation.php",true);
  request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
  request.send("oldPassword="+oldPassword+"&newPassword="+newPassword+"&repeatPassword="+repeatPassword);

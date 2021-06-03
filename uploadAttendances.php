@@ -19,7 +19,6 @@ if (($handle = fopen($file, "r")) !== FALSE) {
    	$i++;
   }
 
-  echo $lines[0];
   $meetingAndTime = explode("meeting ", $lines[0], 2)[1];
   $meetingName = explode(" at ", $meetingAndTime)[0];
 

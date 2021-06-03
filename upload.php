@@ -3,7 +3,6 @@
 <html>
 <body>
 
-
 <form action="registerTutors.php" method="post" enctype="multipart/form-data">
   <input type="file" name="uploadFile" id="fileToUpload">
   <button id="parseButton">Качи файл с преповадатели</button>
@@ -11,7 +10,7 @@
 
 <form action="registerStudents.php" method="post" enctype="multipart/form-data">
   <input type="file" name="uploadFile" id="fileToUpload">
-  <button id="parseButton">Качи файл с студенти</button>
+  <button id="parseButton">Качи файл със студенти</button>
 </form>
 
 </body>
