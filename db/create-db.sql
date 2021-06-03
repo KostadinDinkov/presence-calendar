@@ -29,7 +29,7 @@ CREATE TABLE attendanceCheck (
  checkID INT NOT NULL UNIQUE AUTO_INCREMENT,
  checktime DATETIME NOT NULL,
  eventName VARCHAR(255),
- course VARCHAR(255),
+ courseID VARCHAR(255),
  PRIMARY KEY (checkID)
 );
 
