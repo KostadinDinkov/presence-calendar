@@ -27,8 +27,7 @@
 
 <?php
     if($_SESSION['role']=='tutor'){
-        echo "lslsl";
-        echo "<form action=\"uploadAttendances.php\" method=\"post\" enctype=\"multipart/form-data\">
+        echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
         <button id=\"parseButton\">Качи bbb файл</button>
       </form>";

@@ -89,12 +89,19 @@
 <div id="container" style="margin-top:10px">
 <section id="profileInfo">
     <header>Информация за профила</header>
-    <p>Имейл: <?php echo  $_SESSION['email']; ?> </p>
-    <p>ФН: <?php echo  $_SESSION['fn']; ?></p>
-    <p>Специалност: <?php echo  $_SESSION['spec']; ?></p>
-    <p>Курс: <?php echo  $_SESSION['year']; ?></p>
-    <p>Група: <?php echo  $_SESSION['group'] ?></p>
-    <p >Парола : *****</p><a href="newPasswordForm.php" style="float:right; " >Редактиране на парола</a>
+    <p>Име: <?php echo  $_SESSION['name']; ?></p>
+    <p>Фaкултет: <?php echo  $_SESSION['faculty']; ?></p>
+<?php   
+    if($_SESSION['role']=='student'){
+    
+        echo "<p> ФН:". $_SESSION['fn'] ." </p>
+        <p>Специалност:". $_SESSION['spec']." </p>
+        <p>Курс: ".$_SESSION['year']."</p>
+        <p>Група:". $_SESSION['group']." </p>";
+    }
+?> 
+<p>Имейл: <?php echo  $_SESSION['email']; ?> </p>
+<p >Парола : *****</p><a href="newPasswordForm.php" style="float:right; " >Редактиране на парола</a>
 </section>
 <div id="line"></div>
 <section id="courses">

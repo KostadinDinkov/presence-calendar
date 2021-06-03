@@ -28,6 +28,7 @@ if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
             echo "Грешна парола.";
         }else{
             $_SESSION['username']=$username;
+            $_SESSION['faculty']=$result['faculty'];
             $_SESSION['fn']=$result['fn'];
             $_SESSION['spec']=$result['spec'];
             $_SESSION['year']=$result['year'];
