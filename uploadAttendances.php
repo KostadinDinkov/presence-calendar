@@ -45,10 +45,14 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
 
   for ($i=0; isset($people[$i]) ; $i++) { 
-	$statement = $connection->getConnection()->prepare("SELECT username FROM users WHERE name = :name");
-  	$statement->execute(array(":name" => trim($people[$i][0] . " " . $people[$i][1])));
+	  $statement = $connection->getConnection()->prepare("SELECT username FROM users WHERE name LIKE :name");
+  	$statement->execute(array(":name" => trim($people[$i][0]) . "%" . trim($people[$i][1]) . "%"));
+
+    echo($people[$i][0] . "%" . $people[$i][1] . "%");
 
   	$username = $statement->fetch(PDO::FETCH_ASSOC)['username'];
+
+    var_dump($username);
     if(!isset($username)) continue;
 
   	$statement = $connection->getConnection()->prepare("INSERT INTO peopleateventcheck(attendanceCheckID, username) VALUES (:checkID, :username)");
