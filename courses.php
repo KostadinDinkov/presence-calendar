@@ -23,7 +23,10 @@
         $result = $prepared->fetch(PDO::FETCH_ASSOC)['name'];
         echo($result);
     ?>
-
+<form action="upload2.php" method="post" enctype="multipart/form-data">
+  <input type="file" name="uploadFile" id="fileToUpload">
+  <button id="parseButton">Качи bbb файл</button>
+</form>
 <nav>
     <p>Влезли сте в системата като: 
         <span style="color:#f8f5f0;"><?php echo $_SESSION['name'] ?></span> <a href="login.php">(Изход)</a> </p>

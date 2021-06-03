@@ -11,6 +11,7 @@ CREATE TABLE users (
  username VARCHAR(255) NOT NULL UNIQUE,
  year INT,
  yeargroup INT,
+ faculty  VARCHAR(255),
  spec VARCHAR(255),
  pass VARCHAR(255),
  role VARCHAR(255),
@@ -44,3 +45,25 @@ CREATE TABLE courses (
  name VARCHAR(255),
  PRIMARY KEY (id)
 );
+
+INSERT INTO courses(name) VALUES
+	("Web технологии, летен семестър 2020/2021 "),
+	("Фрактали, летен семестър 2020/2021 "),
+	("Интернет на нещата, летен семестър 2020/2021 "),
+	("Анализ на софтуерните изисквания, летен семестър 2020/2021");
+
+
+INSERT INTO userattends(username, courseID, mandatory) VALUES
+	("62351", 1, 1),
+	("62351", 4, 0),
+	("62351", 3, 0),
+	("62330", 1, 1),
+	("62330", 3, 0),
+	("62330", 2, 0),
+	("62323", 1, 1),
+	("62323", 2, 0),
+	("62281", 1, 1),
+	("62281", 4, 0);
+
+
+ 
