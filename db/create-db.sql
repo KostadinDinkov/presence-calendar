@@ -29,8 +29,8 @@ CREATE TABLE userAttends (
 CREATE TABLE attendanceCheck (
  checkID INT NOT NULL UNIQUE AUTO_INCREMENT,
  checktime DATETIME NOT NULL,
- eventName VARCHAR(255),
- courseID VARCHAR(255),
+ eventID INT,
+ courseID INT,
  PRIMARY KEY (checkID)
 );
 
@@ -48,16 +48,21 @@ CREATE TABLE courses (
 
 CREATE TABLE events(
   id INT NOT NULL UNIQUE AUTO_INCREMENT,
-  name varchar(255),
-  eventTime DATE NOT NULL,
+  startTime DATETIME NOT NULL,
+  endTime DATETIME NOT NULL,
+  topic VARCHAR(255),
+  courseID INT,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE schedule(
-  eventID int,	
-  time DATETIME NOT NULL,
-  PRIMARY KEY(eventID,time)
+CREATE TABLE subevent(
+	eventID INT NOT NULL UNIQUE,
+  	startTime DATETIME NOT NULL,
+  	endTime DATETIME NOT NULL,
+	topic VARCHAR(255),
+	PRIMARY KEY(eventID, startTime)
 );
+
 
 
 INSERT INTO courses(name) VALUES
@@ -80,10 +85,7 @@ INSERT INTO userattends(username, courseID, mandatory) VALUES
 	("62281", 4, 0);
 
 INSERT INTO userattends(username, courseID, mandatory) VALUES
-	(milen, 1, 1),
-	(milko, 2, 1),
-	(irena, 4, 1),
-	(stoqn, 3, 1);
-
-
- 
+	("milen", 1, 1),
+	("milko", 2, 1),
+	("irena", 4, 1),
+	("stoqn", 3, 1);

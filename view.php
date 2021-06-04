@@ -3,6 +3,12 @@
     require("./db.php");
     $db = new Database('mysql','localhost','attendances','root',''); 
     $connection = $db->getConnection();
+
+    
+    $sql="SELECT name FROM courses  where id = ?";
+    $prepared = $connection->prepare($sql);
+    $prepared->execute([$_GET['id']]);
+    $result = $prepared->fetch(PDO::FETCH_ASSOC)['name'];
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +30,6 @@
 <?php
     if($_SESSION['role']=='tutor'){
         echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
-        <input type=\"date\" name=\"eventDateTime\"></input>
-        <input type=\"text\" name=\"subject\"></input>
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
         <button id=\"parseButton\">Качи csv файл с график за събитие</button>
       </form>";
@@ -35,22 +39,7 @@
         <button id=\"parseButton\">Качи bbb файл с присъствия</button>
       </form>";
 
-      $statement = $connection->prepare("SELECT name FROM users JOIN userattends ON users.username = userattends.username  WHERE userattends.courseID = ?");
-      $statement->execute([$_GET['id']]);
-
-      $thisCourseUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-      echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
-      <select name=\"uploadFile\" id=\"fileToUpload\">";
-
-
-        for($i = 0; $i < sizeof($thisCourseUsers); $i++){
-            echo "<option value=" . $thisCourseUsers[$i]["name"] . ">" . $thisCourseUsers[$i]["name"] .  "</option>";
-        };
-
-      echo "</select>
-      <button id=\"submnit\">Виж присъствие</button>
-    </form>";
+     
     }
 
 ?>
