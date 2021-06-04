@@ -70,10 +70,6 @@ $uploadDir = "uploads/";
 $filePath = $uploadDir . basename($_FILES["uploadFile"]["name"]);
 $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
-if (file_exists($filePath)) {
-  echo "Sorry, file already exists.";
-  return;
-}
 
 
 if($fileExtension != "txt" && $fileExtension != "csv") {

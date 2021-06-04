@@ -27,10 +27,17 @@
 
 <?php
     if($_SESSION['role']=='tutor'){
+        echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
+        <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
+        <button id=\"parseButton\">Качи csv файл с график за събитие</button>
+      </form>";
+      
         echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
-        <button id=\"parseButton\">Качи bbb файл</button>
+        <button id=\"parseButton\">Качи bbb файл с присъствия</button>
       </form>";
+
+     
     }
 
 ?>
