@@ -48,10 +48,16 @@ CREATE TABLE courses (
 
 CREATE TABLE events(
   id INT NOT NULL UNIQUE AUTO_INCREMENT,
+  name varchar(255),
   eventTime DATE NOT NULL,
   PRIMARY KEY (id)
 );
 
+CREATE TABLE schedule(
+  eventID int,	
+  time DATETIME NOT NULL,
+  PRIMARY KEY(eventID,time)
+);
 
 
 INSERT INTO courses(name) VALUES
