@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/courses.css">
-    <script src="file.js"></script>
+    <script src="js/validation.js"></script>
  </head>
 <body>
 <section id="personalInfo" >
