@@ -24,22 +24,26 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
   $meetingInfo = preg_split("/(:| |\/)/", explode(" at ", $meetingAndTime)[1]);
 
+var_dump($meetingInfo);
+
   for ($i = 3; strlen($lines[$i]) > 3 ; $i++) { 
   	$people[$i - 3] = explode(" ", $lines[$i]);
   }
 
-  $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime AND eventName = :event");
-  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[1] . "-" .$meetingInfo[0] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":event" => $meetingName));
+  $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime");
+  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" . $meetingInfo[0] . "-" . $meetingInfo[1] . " " . $meetingInfo[3] . ":" . $meetingInfo[4] . ":" . $meetingInfo[5]));
   if($statement->fetch(PDO::FETCH_ASSOC)){
   	fclose($handle);
   	exit();
   };
 
-  $statement = $connection->getConnection()->prepare("INSERT INTO attendancecheck(checktime, eventName) VALUES (:checktime, :event)");
-  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[1] . "-" .$meetingInfo[0] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":event" => $meetingName));
 
-  $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime AND eventName = :event");
-  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[1] . "-" .$meetingInfo[0] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":event" => $meetingName));
+
+  $statement = $connection->getConnection()->prepare("INSERT INTO attendancecheck(checktime, eventID, courseID) VALUES (:checktime, :eventID, :courseID)");
+  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[0] . "-" .$meetingInfo[1] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":eventID" => $_POST["selectedEvent"], "courseID" => $_GET['id']));
+
+  $statement = $connection->getConnection()->prepare("SELECT checkID FROM attendancecheck WHERE checktime = :checktime AND eventID = :eventID");
+  $statement->execute(array(":checktime" => $meetingInfo[2] . "-" .$meetingInfo[0] . "-" .$meetingInfo[1] . " " .$meetingInfo[3] . ":" .$meetingInfo[4] . ":" . $meetingInfo[5], ":eventID" => $_POST['selectedEvent']));
 
   $checkID = $statement->fetch(PDO::FETCH_ASSOC)['checkID'];
 

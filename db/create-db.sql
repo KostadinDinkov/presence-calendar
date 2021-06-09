@@ -46,8 +46,6 @@ CREATE TABLE courses (
  PRIMARY KEY (id)
 );
 
-drop table `events`;
-
 CREATE TABLE events(
   id INT NOT NULL UNIQUE AUTO_INCREMENT,
   eventDate date NOT NULL,
@@ -84,6 +82,7 @@ INSERT INTO userattends(username, courseID, mandatory) VALUES
 	("62323", 1, 1),
 	("62323", 2, 0),
 	("62281", 1, 1),
+	("62344", 1, 1),
 	("62281", 4, 0);
 
 INSERT INTO userattends(username, courseID, mandatory) VALUES

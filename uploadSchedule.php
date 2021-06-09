@@ -30,8 +30,8 @@
    
         $sql = 'insert into subevents(eventID,startTime,endTime,topic) values(?,?,?,?)';
         $statement = $connection->prepare($sql);
-        $statement->execute([$eventID,$date . " ". $startTime . ":00",$date . " ". $endTime . ":00",$topic]);
-]
+        $statement->execute([$eventID, $date . " ". $startTime . ":00", $date . " " . $endTime . ":00", $topic]);
+      
     }else{
         $startTime = $csv[$i+1][0];
     }
