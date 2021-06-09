@@ -107,10 +107,21 @@
         $statement->execute(array("eventID" => $events[$i]['id'], "username" => $_POST['selectedUser']));
         $countOfAttendances = $statement->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
         
-        //echo ( $countOfAttendances . "/" . $countOfChecks);
+        $greenness;
+        if($countOfChecks != 0) {
+            $greenness = $countOfAttendances / $countOfChecks;
+        } else {
+            $greenness = 0;
+        }
         
-        echo "<p class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</p>";
-        echo "<div class=\"circle\"></div>";
+        
+        echo "<div><span class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</span>";
+        echo "<div class=\"circle\" style=\"background-color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0);\"></div>";
+        echo "<svg viewBox='0 0 32 32'>
+        <circle r='16' cx='16' cy='16' style='stroke-dasharray: " . 100*$greenness . " 100;' />
+      </svg>";
+        // echo "<progress value=\"" . $greenness . "\"style=\"color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0, 1);\"></progress>";
+        // echo "<meter value=\"" . $countOfAttendances .  "\" max=\"" . $countOfChecks . "\" low=\"" . $countOfChecks/2 . "\"></meter>";   
 
         echo "<button id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\">Покажи</button>";
         $subsql = 'select * from subevents where eventID=? order by startTime desc';
@@ -125,7 +136,7 @@
             $end = explode(' ',$subevents[$j]['endTime'])[1];
             echo "<li>( ".$start." - ".$end.")     -   ".$subevents[$j]['topic']."</li>";
         }
-        echo "</ul>";
+        echo "</ul></div>";
     }
     }
 

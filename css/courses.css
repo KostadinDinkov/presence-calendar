@@ -179,3 +179,19 @@ input[type="file"] {
     border: 1px solid #592A2A;
     box-shadow: 1px 1px #592A2A;
 }
+
+
+svg {
+    width: 25px; height: 25px;
+    transform: rotate(-90deg);
+    background: #f33232;
+    border-radius: 50%;
+}
+  
+circle {
+    fill: #f33232;
+    stroke: green;
+    stroke-width: 32;
+    /* stroke-dasharray: 38 100; */
+  }
+  
