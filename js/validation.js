@@ -31,9 +31,7 @@ function checkPasswords(){
 
 function showSubevents(subeventNumber){
 
-    console.log(subeventNumber);
-   
-    var subevents = document.getElementById("subevents" + subeventNumber);
+   var subevents = document.getElementById("subevents" + subeventNumber);
 
     var button = document.getElementById("showSubevents" + subeventNumber);
     
@@ -44,7 +42,6 @@ function showSubevents(subeventNumber){
         subevents.style.display = "none";
         button.innerText = "Покажи";
    }
-
 }
 
 

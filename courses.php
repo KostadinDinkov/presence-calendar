@@ -22,7 +22,7 @@
 </section>
 
 <?php
-        echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
+        echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id=\"uploadSchedule\">
         <input type=\"date\" name=\"eventDate\"></input>
         <input type=\"text\" name=\"topic\"></input>
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
@@ -34,7 +34,7 @@
 
       $thisCourseEvents = $statement->fetchAll(PDO::FETCH_ASSOC);
       
-        echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
+        echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\ id='uploadattendances'>
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
         <select name=\"selectedEvent\" id=\"selectedEvent\">";
 
@@ -56,7 +56,7 @@
 
       $thisCourseUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-      echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
+      echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" >
       <select name=\"selectedUser\" id=\"selectedUser\">";
 
         if(! isset($_POST['selectedUser'])) {
@@ -100,9 +100,12 @@
         $statement->execute(array("eventID" => $events[$i]['id'], "username" => $_POST['selectedUser']));
         $countOfAttendances = $statement->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
         
-        echo ($countOfChecks . "/" . $countOfAttendances);
+        //echo ( $countOfAttendances . "/" . $countOfChecks);
         
-        echo "<p>".$events[$i]['eventDate']." - ".$events[$i]['topic']."<button id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\">Покажи</button></p>";
+        echo "<p class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</p>";
+        echo "<div class=\"circle\"></div>";
+
+        echo "<button id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\">Покажи</button>";
         $subsql = 'select * from subevents where eventID=? order by startTime desc';
         $statement = $connection->prepare($subsql);
         $statement->execute([$events[$i]['id']]);
@@ -120,10 +123,6 @@
     }
 
 ?>
-<div id="1">111111111111</div>
-<div id="2">222222222222</div>
-<div id="3">333333333333</div>
-<div id="4">444444444444</div>
 <nav>
     <p>Влезли сте в системата като: 
         <span style="color:#f8f5f0;"><?php echo $_SESSION['name'] ?></span> <a href="login.php">(Изход)</a> </p>

@@ -3,13 +3,7 @@ body{
     color: #1A1E26;
     background-color:#f8f5f0;
 }
-#personalInfo{
-    background-color:#f8f5f0;
-}
 
-#names{
-    font-size: 25pt;
-}
 
 #picture{
         width: 100px;
@@ -39,31 +33,7 @@ h2{
     border-bottom:1px solid #BFA07A;
 }
 
-#profileInfo p {
-    margin-left:5%;
-}
 
-#profileInfo{
-    background-color:#f8f5f0;
-    width:30%;
-    margin-left: 10px;
-    float:left;
-    border-right:1px solid #BFA07A ;
-    padding-right:10px;
-    
-}
-
-#courses{
-    background-color:#f8f5f0;
-    width:50%;
-}
-
-#courses header{
-    margin-left:4%;
-}
-#courses h2, ul{
-    margin-left:10%;
-}
 #line{
     background-color:#BFA07A ;
     border:1px solid #BFA07A ;
@@ -73,11 +43,8 @@ a{
     color:#592A2A;
 }
 
-
-#container{
-    display:flex;
-    flex-direction: row;
-    height:500px;
+#names{
+    font-size: 25pt;
 }
 
 nav{
@@ -91,9 +58,36 @@ html{
     overflow: hidden;
 }
 
-#uni{
-    background-image: url("../images/lib3.png");
-    min-height:50%;
-    width:20%;
+.circle{
+    background-color: brown;
+    width:20px;
+    height:20px;
+    border-radius: 50%;
 }
 
+#uploadattendances{
+    background-color: saddlebrown;
+    margin-left: 10%;
+    padding: 30px;
+    border: 6px solid white ;
+}
+
+#uploadSchedule{
+    margin-left: 10%;
+    padding: 30px;
+    border: 6px solid white ;
+}
+
+#uploadSchedule{
+    
+    display:flex;
+    flex-direction: column;
+    width:30%;
+    min-width: 350px;
+   
+}
+
+#uploadSchedule *{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
