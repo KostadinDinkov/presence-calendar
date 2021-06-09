@@ -1,0 +1,99 @@
+body{
+    font-size: 14pt;
+    color: #1A1E26;
+    background-color:#f8f5f0;
+}
+#personalInfo{
+    background-color:#f8f5f0;
+}
+
+#names{
+    font-size: 25pt;
+}
+
+#picture{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin:15px;
+      
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+      
+}
+
+header{
+    font-size:20pt;
+    font-weight: bold;
+}
+
+h2{
+    font-size:15pt;
+    font-weight: bold;
+}
+
+#personalInfo{
+    display:flex;
+    flex-direction: row;
+    border-bottom:1px solid #BFA07A;
+}
+
+#profileInfo p {
+    margin-left:5%;
+}
+
+#profileInfo{
+    background-color:#f8f5f0;
+    width:30%;
+    margin-left: 10px;
+    float:left;
+    border-right:1px solid #BFA07A ;
+    padding-right:10px;
+    
+}
+
+#courses{
+    background-color:#f8f5f0;
+    width:50%;
+}
+
+#courses header{
+    margin-left:4%;
+}
+#courses h2, ul{
+    margin-left:10%;
+}
+#line{
+    background-color:#BFA07A ;
+    border:1px solid #BFA07A ;
+}
+a{
+    text-decoration: none;
+    color:#592A2A;
+}
+
+
+#container{
+    display:flex;
+    flex-direction: row;
+    height:500px;
+}
+
+nav{
+    margin-bottom:0;
+    background-color: #BFA07A;
+    color: #1A1E26;
+    min-height:50px;
+}
+
+html{
+    overflow: hidden;
+}
+
+#uni{
+    background-image: url("../images/lib3.png");
+    min-height:50%;
+    width:20%;
+}
+

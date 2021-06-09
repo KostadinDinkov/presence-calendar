@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/courses.css">
     <script src="file.js"></script>
  </head>
 <body>
@@ -84,7 +84,10 @@
     }
 
 ?>
-
+<div id="1">111111111111</div>
+<div id="2">222222222222</div>
+<div id="3">333333333333</div>
+<div id="4">444444444444</div>
 <nav>
     <p>Влезли сте в системата като: 
         <span style="color:#f8f5f0;"><?php echo $_SESSION['name'] ?></span> <a href="login.php">(Изход)</a> </p>
