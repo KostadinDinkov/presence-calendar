@@ -18,8 +18,9 @@
 <section id="personalInfo" >
     <figure><img src="images/person.png" alt="home"  id="picture"></figure>
     <p style="font-size:15pt">Добре дошли,</span> </p>
-    <p id ="names" ><?php echo $_SESSION['name'] ?></p>
+    <p id ="names" style="margin-bottom:20px;" ><?php echo $_SESSION['name'] ?></p>
 </section>
+<div class="spacing"></div>
 
 <section class='forms'>
 
@@ -28,7 +29,8 @@
         <legend>Качване на график на събитие</legend>
         <input class='form-input' type=\"date\" name=\"eventDate\"></input>
         <input class='form-input' type=\"text\" name=\"topic\"></input>
-        <label class='form-upload'><input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">Избор на файл</label>
+        <label for=\"fileToUpload\" class='form-upload'>Избор на файл</label>
+        <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\"></input>
         <button class='form-button' id=\"parseButton\">Качи csv файл с график за събитие</button>
       </form>";
 
@@ -59,9 +61,14 @@
       $statement->execute([$_GET['id']]);
 
       $thisCourseUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
-        
-      echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" >
-      <legend>Проверка на присъствие за потребител</legend>
+      ?>
+      </section>
+      <div class="spacing"></div>
+      <section id="selectUser">
+    <?php
+      echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id=\"checkAttendances\">
+      <label for=\"selectedUser\" id=\"h\">Проверка на присъствие за потребител</label>
+      <fieldset>
       <select name=\"selectedUser\" id=\"selectedUser\">";
 
         if(! isset($_POST['selectedUser'])) {
@@ -82,10 +89,10 @@
         };
 
       echo "</select>
-      <button class='form-button' id=\"submnit\">Виж присъствие</button>
-    </form>";
+      <button id=\"submit\">Виж присъствие</button></fieldset>
+    </form></section><section id=\"main\">";
 
-    echo "</section><section>";
+   
 
     if(isset($_POST['selectedUser'])){
     
