@@ -29,14 +29,20 @@ function checkPasswords(){
  return false;
 }
 
-function showSubevents(){
+function showSubevents(subeventNumber){
+
+    console.log(subeventNumber);
    
-    var subevents = document.getElementById("subevents");
+    var subevents = document.getElementById("subevents" + subeventNumber);
+
+    var button = document.getElementById("showSubevents" + subeventNumber);
     
    if (subevents.style.display === "none") {
         subevents.style.display = "block";
+        button.innerText = "Скрий";
     } else {
         subevents.style.display = "none";
+        button.innerText = "Покажи";
    }
 
 }
