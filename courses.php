@@ -115,17 +115,26 @@
         $countOfAttendances = $statement->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
         
         $greenness;
+        $redness;
         if($countOfChecks != 0) {
-            $greenness = $countOfAttendances / $countOfChecks;
+            if($countOfAttendances / $countOfChecks > 0.5){
+                $greenness = 255;
+                $redness = (($countOfAttendances / $countOfChecks) * 2 - 1) * 255;
+            } else {
+                $redness = 255;
+                $greenness = ($countOfAttendances / $countOfChecks) * 510;
+            }
         } else {
-            $greenness = 0;
+            $greenness = 255;
+            $redness = 0;
         }
         
         
         echo "<div><span class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</span>";
-        echo "<div class=\"circle\" style=\"background-color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0);\"></div>";
-        echo "<span style=\"margin-left:5px;margin-right:5px;\">". $countOfAttendances . "/". $countOfChecks ."</span>";
-        
+        echo "<div class=\"circle\" style=\"background-color: rgba(" . $greenness . ", " . $redness . ", 0);\"></div>";
+        echo "<svg viewBox='0 0 32 32'>
+        <circle r='16' cx='16' cy='16' style='stroke-dasharray: " . 100*$greenness . " 100;' />
+      </svg>";
         // echo "<progress value=\"" . $greenness . "\"style=\"color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0, 1);\"></progress>";
         // echo "<meter value=\"" . $countOfAttendances .  "\" max=\"" . $countOfChecks . "\" low=\"" . $countOfChecks/2 . "\"></meter>";   
 
