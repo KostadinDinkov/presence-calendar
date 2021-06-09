@@ -22,10 +22,9 @@
 </section>
 
 <?php
-    if($_SESSION['role']=='tutor'){
         echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
-        <input type=\"date\" name=\"eventDateTime\"></input>
-        <input type=\"text\" name=\"subject\"></input>
+        <input type=\"date\" name=\"eventDate\"></input>
+        <input type=\"text\" name=\"topic\"></input>
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
         <button id=\"parseButton\">Качи csv файл с график за събитие</button>
       </form>";
@@ -35,22 +34,53 @@
         <button id=\"parseButton\">Качи bbb файл с присъствия</button>
       </form>";
 
-      $statement = $connection->prepare("SELECT name FROM users JOIN userattends ON users.username = userattends.username  WHERE userattends.courseID = ?");
+      $statement = $connection->prepare("SELECT * FROM users JOIN userattends ON users.username = userattends.username  WHERE userattends.courseID = ?");
       $statement->execute([$_GET['id']]);
 
       $thisCourseUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-      echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
-      <select name=\"uploadFile\" id=\"fileToUpload\">";
+      echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\">
+      <select name=\"selectedUser\" id=\"selectedUser\">";
 
 
         for($i = 0; $i < sizeof($thisCourseUsers); $i++){
-            echo "<option value=" . $thisCourseUsers[$i]["name"] . ">" . $thisCourseUsers[$i]["name"] .  "</option>";
+            echo "<option value=" . $thisCourseUsers[$i]["username"]  ;
+            if(isset($_POST['selectedUser']) && $_POST['selectedUser'] == $thisCourseUsers[$i]["username"] )
+            {
+                echo " selected ";
+            }
+            
+            echo ">".$thisCourseUsers[$i]["name"]."</option>";
         };
 
       echo "</select>
       <button id=\"submnit\">Виж присъствие</button>
     </form>";
+
+    if(isset($_POST['selectedUser'])){
+    
+    $sql = 'select * from events where courseID=? order by eventDate desc ';
+    $statement = $connection->prepare($sql);
+    $statement->execute([$_GET['id']]);
+    $events=$statement->fetchAll(PDO::FETCH_ASSOC);
+    
+    for($i=0;$i<sizeof($events);$i++){
+
+        echo "<p>".$events[$i]['eventDate']." - ".$events[$i]['topic']."Lekciq <button id=\"showSubevents\" onclick=\"showSubevents()\">Покажи</button></p>";
+        $subsql = 'select * from subevents where eventID=? order by startTime desc';
+        $statement = $connection->prepare($subsql);
+        $statement->execute([$events[$i]['id']]);
+        $subevents=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+        echo "<ul id=\"subevents\"> ";
+        for($j=0;$j<sizeof($subevents);$j++){
+            
+            $start = explode(' ',$subevents[$j]['startTime'])[1];
+            $end = explode(' ',$subevents[$j]['endTime'])[1];
+            echo "<li>( ".$start." - ".$end.")     -   ".$subevents[$j]['topic']."</li>";
+        }
+        echo "</ul>";
+    }
     }
 
 ?>

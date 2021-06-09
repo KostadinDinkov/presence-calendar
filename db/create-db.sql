@@ -46,24 +46,26 @@ CREATE TABLE courses (
  PRIMARY KEY (id)
 );
 
+drop table `events`;
+
 CREATE TABLE events(
   id INT NOT NULL UNIQUE AUTO_INCREMENT,
-  startTime DATETIME NOT NULL,
-  endTime DATETIME NOT NULL,
+  eventDate date NOT NULL,
   topic VARCHAR(255),
   courseID INT,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE subevent(
-	eventID INT NOT NULL UNIQUE,
+CREATE TABLE subevents(
+	eventID INT NOT NULL,
   	startTime DATETIME NOT NULL,
   	endTime DATETIME NOT NULL,
 	topic VARCHAR(255),
-	PRIMARY KEY(eventID, startTime)
+	PRIMARY KEY(eventID, topic)
 );
 
-
+insert into subevents(eventID,startTime,endTime,topic) values(2,"2021-02-06 08:36:00","2021-02-06 08:42:00","fuck");
+insert into subevents(eventID,startTime,endTime,topic) values(2,"2021-02-06 08:42:00","2021-02-06 08:48:00","fuck2");
 
 INSERT INTO courses(name) VALUES
 	("Web технологии, летен семестър 2020/2021 "),

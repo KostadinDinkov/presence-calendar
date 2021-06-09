@@ -32,7 +32,7 @@
         while($result){
             $id = $result["id"];
             echo "<li>";
-            echo "<a href=view.php?id="."$id".">";
+            echo "<a href=courses.php?id="."$id".">";
             echo $result["name"];
             echo "</a></li>";
             $result = $prepared->fetch(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@
         while($result){
             $id = $result["id"];
             echo "<li>";
-            echo "<a href=courses.php?id="."$id".">";
+            echo "<a href=view.php?id="."$id".">";
             echo $result["name"];
             echo "</a></li>";
             $result = $prepared->fetch(PDO::FETCH_ASSOC);
@@ -62,7 +62,7 @@
         while($result){
             $id = $result["id"];
             echo "<li>";
-            echo "<a href=courses.php?id="."$id".">";
+            echo "<a href=view.php?id="."$id".">";
             echo $result["name"];
             echo "</a></li>";
             $result = $prepared->fetch(PDO::FETCH_ASSOC);

@@ -29,6 +29,22 @@ function checkPasswords(){
  return false;
 }
 
+function showSubevents(){
+   
+    var subevents = document.getElementById("subevents");
+    
+   if (subevents.style.display === "none") {
+        subevents.style.display = "block";
+    } else {
+        subevents.style.display = "none";
+   }
+
+}
+
+
+
+
+
 function validate(){
    
     var username = document.getElementById("username").value;
