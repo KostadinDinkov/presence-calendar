@@ -124,13 +124,13 @@
         
         echo "<div><span class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</span>";
         echo "<div class=\"circle\" style=\"background-color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0);\"></div>";
-        echo "<svg viewBox='0 0 32 32'>
-        <circle r='16' cx='16' cy='16' style='stroke-dasharray: " . 100*$greenness . " 100;' />
-      </svg>";
+        echo "<span style=\"margin-left:5px;margin-right:5px;\">". $countOfAttendances . "/". $countOfChecks ."</span>";
+        
         // echo "<progress value=\"" . $greenness . "\"style=\"color: rgba(" . 255*(1-$greenness) . ", " . 255*$greenness . ", 0, 1);\"></progress>";
         // echo "<meter value=\"" . $countOfAttendances .  "\" max=\"" . $countOfChecks . "\" low=\"" . $countOfChecks/2 . "\"></meter>";   
 
-        echo "<button id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\">Покажи</button>";
+        //echo "<button id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\">Покажи</button>";
+        echo "<i class=\"arrow down\"></i>";
         $subsql = 'select * from subevents where eventID=? order by startTime desc';
         $statement = $connection->prepare($subsql);
         $statement->execute([$events[$i]['id']]);
