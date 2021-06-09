@@ -21,12 +21,15 @@
     <p id ="names" ><?php echo $_SESSION['name'] ?></p>
 </section>
 
+<section class='forms'>
+
 <?php
         echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id=\"uploadSchedule\">
-        <input type=\"date\" name=\"eventDate\"></input>
-        <input type=\"text\" name=\"topic\"></input>
-        <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
-        <button id=\"parseButton\">Качи csv файл с график за събитие</button>
+        <legend>Качване на график на събитие</legend>
+        <input class='form-input' type=\"date\" name=\"eventDate\"></input>
+        <input class='form-input' type=\"text\" name=\"topic\"></input>
+        <label class='form-upload'><input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">Избор на файл</label>
+        <button class='form-button' id=\"parseButton\">Качи csv файл с график за събитие</button>
       </form>";
 
       $statement = $connection->prepare("SELECT * FROM events WHERE courseID = ? AND eventDate < CURDATE()");
@@ -34,8 +37,9 @@
 
       $thisCourseEvents = $statement->fetchAll(PDO::FETCH_ASSOC);
       
-        echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\ id='uploadattendances'>
-        <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">
+        echo "<form action=\"uploadAttendances.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id='uploadattendances'>
+        <legend>Качване на файл с присъствие</legend>
+        <label class='form-upload'><input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\">Избор на файл</label>
         <select name=\"selectedEvent\" id=\"selectedEvent\">";
 
         for($i = 0; $i < sizeof($thisCourseEvents); $i++){
@@ -48,7 +52,7 @@
         };
 
 
-        echo "</select><button id=\"parseButton\">Качи bbb файл с присъствия</button>
+        echo "</select><button class='form-button' id=\"parseButton\">Качи bbb файл с присъствия</button>
       </form>";
 
       $statement = $connection->prepare("SELECT * FROM users JOIN userattends ON users.username = userattends.username  WHERE userattends.courseID = ?");
@@ -57,6 +61,7 @@
       $thisCourseUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
         
       echo "<form action=\"courses.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" >
+      <legend>Проверка на присъствие за потребител</legend>
       <select name=\"selectedUser\" id=\"selectedUser\">";
 
         if(! isset($_POST['selectedUser'])) {
@@ -77,8 +82,10 @@
         };
 
       echo "</select>
-      <button id=\"submnit\">Виж присъствие</button>
+      <button class='form-button' id=\"submnit\">Виж присъствие</button>
     </form>";
+
+    echo "</section><section>";
 
     if(isset($_POST['selectedUser'])){
     
@@ -123,6 +130,8 @@
     }
 
 ?>
+
+</section>
 <nav>
     <p>Влезли сте в системата като: 
         <span style="color:#f8f5f0;"><?php echo $_SESSION['name'] ?></span> <a href="login.php">(Изход)</a> </p>
