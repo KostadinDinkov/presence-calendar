@@ -37,10 +37,8 @@ function showSubevents(subeventNumber){
     
    if (subevents.style.display === "none") {
         subevents.style.display = "block";
-        button.innerText = "Скрий";
     } else {
         subevents.style.display = "none";
-        button.innerText = "Покажи";
    }
 }
 

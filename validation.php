@@ -1,11 +1,9 @@
 <?php
-
     session_start();
-	session_regenerate_id(true);
-    
+    session_regenerate_id(true);
     require_once 'db.php';
     
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database('mysql','localhost','dream-world','root',''); 
     $connection = $db->getConnection();
 
 if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
@@ -23,19 +21,11 @@ if(!empty($_POST["username"]) && !empty($_POST["password"]) ){
         echo "Не съществува такова потребителско име.";
     }else{
       
-        $hashed_password = $result['pass'];
-        if(!password_verify($password,$hashed_password)){
+        $real_password = $result['pass'];
+        if(!password_verify($password,$real_password)){
             echo "Грешна парола.";
         }else{
             $_SESSION['username']=$username;
-            $_SESSION['faculty']=$result['faculty'];
-            $_SESSION['fn']=$result['fn'];
-            $_SESSION['spec']=$result['spec'];
-            $_SESSION['year']=$result['year'];
-            $_SESSION['group']=$result['yeargroup'];
-            $_SESSION['email']= $result['email'];
-            $_SESSION['name']= $result['name'];
-            $_SESSION['role']=$result['role'];
         }
     }
   
