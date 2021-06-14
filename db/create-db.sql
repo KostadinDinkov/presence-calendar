@@ -62,9 +62,6 @@ CREATE TABLE subevents(
 	PRIMARY KEY(eventID, topic)
 );
 
-insert into subevents(eventID,startTime,endTime,topic) values(2,"2021-02-06 08:36:00","2021-02-06 08:42:00","fuck");
-insert into subevents(eventID,startTime,endTime,topic) values(2,"2021-02-06 08:42:00","2021-02-06 08:48:00","fuck2");
-
 INSERT INTO courses(name) VALUES
 	("Web технологии, летен семестър 2020/2021 "),
 	("Фрактали, летен семестър 2020/2021 "),
@@ -90,3 +87,5 @@ INSERT INTO userattends(username, courseID, mandatory) VALUES
 	("milko", 2, 1),
 	("irena", 4, 1),
 	("stoqn", 3, 1);
+
+INSERT INTO `users` (email,username,pass,role) VALUES ("admin@gmail.com","admin","$argon2id$v=19$m=65536,t=4,p=1$SGhsQjIuY2EvL3lIc0VVUA$Sl5zUnl04NrxloXBxPAdaltaIy1ZHYJJr2BuM/z4TZg","admin"); 
