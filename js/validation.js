@@ -47,7 +47,7 @@ function showSubevents(subeventNumber){
 
 
 function validate(){
-   
+
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     document.getElementById("error").style = "display:none";
@@ -58,9 +58,14 @@ function validate(){
             console.log(username);
             
                 if(request.response == ""){
-                    console.log("a" + request.response+ "a");
-                    location.href = 'profile.php';
-                }
+            
+                    console.log(username);
+                    if (username == "admin"){
+                        location.href = 'upload.php';
+                    } else{
+                        location.href = 'profile.php';
+                    }
+            }
                 document.getElementById("error").innerText = request.response;
                 document.getElementById("error").style = "display:block";  
                 return false; 
