@@ -28,7 +28,7 @@
         echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id=\"uploadSchedule\">
         <legend>Качване на график на събитие</legend>
         <input class='form-input' type=\"date\" name=\"eventDate\"></input>
-        <input class='form-input' type=\"text\" name=\"topic\"></input>
+        <input class='form-input' type=\"text\" name=\"topic\" placeholder=\"Тема на събитието\"></input>
         <label for=\"fileToUpload\" class='form-upload'>Избор на файл</label>
         <input type=\"file\" name=\"uploadFile\" id=\"fileToUpload\"></input>
         <button class='form-button' id=\"parseButton\">Качи csv файл с график за събитие</button>
@@ -119,7 +119,7 @@
         if($countOfChecks != 0) {
             if($countOfAttendances / $countOfChecks > 0.5){
                 $greenness = 255;
-                $redness = (($countOfAttendances / $countOfChecks) * 2 - 1) * 255;
+                $redness = (1 - ($countOfAttendances / $countOfChecks)) * 510;
             } else {
                 $redness = 255;
                 $greenness = ($countOfAttendances / $countOfChecks) * 510;
@@ -131,10 +131,10 @@
         
         
         echo "<div><span class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</span>";
-        echo "<div class=\"circle\" style=\"background-color: rgba(" . $greenness . ", " . $redness . ", 0);\"></div>";
+        echo "<div class=\"circle\" style=\"background-color: rgba(" . $redness . ", " . $greenness . ", 0);\"></div>";
     
         echo "<i class=\"arrow down\" id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\"></i>";
-        $subsql = 'select * from subevents where eventID=? order by startTime desc';
+        $subsql = 'select * from subevents where eventID=? order by startTime asc';
         $statement = $connection->prepare($subsql);
         $statement->execute([$events[$i]['id']]);
         $subevents=$statement->fetchAll(PDO::FETCH_ASSOC);

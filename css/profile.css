@@ -81,10 +81,13 @@ a{
 }
 
 nav{
+    position: fixed;
+    bottom: 0;
+    right: 0;
     margin-bottom:0;
     background-color: #BFA07A;
     color: #1A1E26;
-    min-height:50px;
+    height:50px;
 }
 
 html{

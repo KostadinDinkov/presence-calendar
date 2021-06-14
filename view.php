@@ -17,7 +17,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/courses.css">
     <script src="js/validation.js"></script>
  </head>
 <body>
@@ -29,27 +29,57 @@
 <section>
 <?php
 
-    $sql = 'select * from events where courseID=? order by eventDate desc ';
-    $statement = $connection->prepare($sql);
-    $statement->execute([$_GET['id']]);
-    $events=$statement->fetchAll(PDO::FETCH_ASSOC);
+$sql = 'select * from events where courseID=? order by eventDate desc ';
+$statement = $connection->prepare($sql);
+$statement->execute([$_GET['id']]);
+$events=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+for($i=0;$i<sizeof($events);$i++){
+
+
+    $sqlGetCountOfChecks = 'SELECT COUNT(DISTINCT attendancecheckID) FROM attendancecheck JOIN peopleateventcheck ON attendancecheck.checkID = peopleateventcheck.attendanceCheckID WHERE eventID = :eventID';
+    $statement = $connection->prepare($sqlGetCountOfChecks);
+    $statement->execute(array("eventID" => $events[$i]['id']));
+    $countOfChecks = $statement->fetch(PDO::FETCH_ASSOC)['COUNT(DISTINCT attendancecheckID)'];
+
+    $sqlGetCountOfAttendances = 'SELECT COUNT(*) FROM attendancecheck JOIN peopleateventcheck ON attendancecheck.checkID = peopleateventcheck.attendanceCheckID WHERE eventID = :eventID AND username = :username';
+    $statement = $connection->prepare($sqlGetCountOfAttendances);
+    $statement->execute(array("eventID" => $events[$i]['id'], "username" => $_SESSION['username']));
+    $countOfAttendances = $statement->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
     
-    for($i=0;$i<sizeof($events);$i++){
-
-        echo "<p>".$events[$i]['eventDate']." - ".$events[$i]['topic']."Lekciq <button id=\"showSubevents\" onclick=\"showSubevents()\">Покажи</button></p>";
-        $subsql = 'select * from subevents where eventID=? order by startTime desc';
-        $statement = $connection->prepare($subsql);
-        $statement->execute([$events[$i]['id']]);
-        $subevents=$statement->fetchAll(PDO::FETCH_ASSOC);
-
-        echo "<ul id=\"subevents\"> ";
-        for($j=0;$j<sizeof($subevents);$j++){
-            
-            $start = explode(' ',$subevents[$j]['startTime'])[1];
-            $end = explode(' ',$subevents[$j]['endTime'])[1];
-            echo "<li>( ".$start." - ".$end.")     -   ".$subevents[$j]['topic']."</li>";
+    $greenness;
+    $redness;
+    if($countOfChecks != 0) {
+        if($countOfAttendances / $countOfChecks > 0.5){
+            $greenness = 255;
+            $redness = (1 - ($countOfAttendances / $countOfChecks)) * 510;
+        } else {
+            $redness = 255;
+            $greenness = ($countOfAttendances / $countOfChecks) * 510;
         }
-        echo "</ul>";
+    } else {
+        $greenness = 255;
+        $redness = 0;
+    }
+    
+    
+    echo "<div><span class=\"eventName\">".$events[$i]['eventDate']." - ".$events[$i]['topic']."</span>";
+    echo "<div class=\"circle\" style=\"background-color: rgba(" . $redness . ", " . $greenness . ", 0);\"></div>";
+
+    echo "<i class=\"arrow down\" id=\"showSubevents" . $i . "\" onclick=\"showSubevents(" . $i . ")\"></i>";
+    $subsql = 'select * from subevents where eventID=? order by startTime asc';
+    $statement = $connection->prepare($subsql);
+    $statement->execute([$events[$i]['id']]);
+    $subevents=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+    echo "<ul id=\"subevents" . $i . "\" style=\"display:none\" > ";
+    for($j=0;$j<sizeof($subevents);$j++){
+        
+        $start = explode(' ',$subevents[$j]['startTime'])[1];
+        $end = explode(' ',$subevents[$j]['endTime'])[1];
+        echo "<li>( ".$start." - ".$end.")     -   ".$subevents[$j]['topic']."</li>";
+    }
+    echo "</ul></div>";
     }
 
 

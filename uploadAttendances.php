@@ -24,7 +24,6 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 
   $meetingInfo = preg_split("/(:| |\/)/", explode(" at ", $meetingAndTime)[1]);
 
-var_dump($meetingInfo);
 
   for ($i = 3; strlen($lines[$i]) > 3 ; $i++) { 
   	$people[$i - 3] = explode(" ", $lines[$i]);
@@ -56,7 +55,6 @@ var_dump($meetingInfo);
 
   	$username = $statement->fetch(PDO::FETCH_ASSOC)['username'];
 
-    var_dump($username);
     if(!isset($username)) continue;
 
   	$statement = $connection->getConnection()->prepare("INSERT INTO peopleateventcheck(attendanceCheckID, username) VALUES (:checkID, :username)");
