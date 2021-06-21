@@ -66,7 +66,9 @@ INSERT INTO courses(name) VALUES
 	("Web технологии, летен семестър 2020/2021 "),
 	("Фрактали, летен семестър 2020/2021 "),
 	("Интернет на нещата, летен семестър 2020/2021 "),
-	("Анализ на софтуерните изисквания, летен семестър 2020/2021");
+	("Анализ на софтуерните изисквания, летен семестър 2020/2021"),
+	("Приложно-програмни интерфейси за работа с облачни архитектури с Амазон Уеб Услуги (AWS), летен семестър 2020/2021");
+;
 
 
 INSERT INTO userattends(username, courseID, mandatory) VALUES
@@ -84,6 +86,7 @@ INSERT INTO userattends(username, courseID, mandatory) VALUES
 
 INSERT INTO userattends(username, courseID, mandatory) VALUES
 	("milen", 1, 1),
+	("milen", 5, 1),
 	("milko", 2, 1),
 	("irena", 4, 1),
 	("stoqn", 3, 1);
