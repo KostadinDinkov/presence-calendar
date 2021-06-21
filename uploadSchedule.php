@@ -59,5 +59,11 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
     echo "<br/>";
   }
 
+  echo "<br/> Redirecting in 5 seconds";
+
+  sleep(5);
+
+  header('Location: courses.php');
+
 
 ?>

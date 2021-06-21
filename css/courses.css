@@ -66,6 +66,7 @@ nav{
 }
 
 .circle{
+    margin-left: 2%;
     background-color: brown;
     width:20px;
     height:20px;
@@ -227,7 +228,8 @@ fieldset{
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
-    margin-left: 100px;
+    margin-left: 2%;
+    margin-bottom: 1%;
   }
 
   .down {

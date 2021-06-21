@@ -88,5 +88,10 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
     echo "Sorry, there was an error uploading your file.";
   }
 
+  echo "<br/> Redirecting in 5 seconds";
+
+  sleep(5);
+
+  header('Location: courses.php');
 
 ?>
