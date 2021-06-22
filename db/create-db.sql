@@ -1,4 +1,4 @@
-drop database attendances;
+DROP DATABASE IF EXISTS attendances;
 
 CREATE DATABASE IF NOT EXISTS attendances;	
 
