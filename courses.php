@@ -1,7 +1,7 @@
 <?php
     require("./security.php");
     require("./db.php");
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
 ?>
 
@@ -25,6 +25,7 @@
 <section class='forms'>
 
 <?php
+
         echo "<form action=\"uploadSchedule.php?id=".$_GET['id']."\" method=\"post\" enctype=\"multipart/form-data\" id=\"uploadSchedule\">
         <legend>Качване на график на събитие</legend>
         <input class='form-input' type=\"date\" name=\"eventDate\"></input>

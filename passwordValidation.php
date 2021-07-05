@@ -14,7 +14,7 @@
         echo "Паролите не съвпадат. ";
         return ;   
     }
-        $db = new Database('mysql','localhost','attendances','root',''); 
+        $db = new Database(); 
         $connection = $db->getConnection();
         $sql = 'SELECT pass FROM `users` WHERE username=?';
         $prepared = $connection->prepare($sql);

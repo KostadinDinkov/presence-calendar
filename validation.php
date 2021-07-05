@@ -5,7 +5,7 @@
     
     require_once 'db.php';
     
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
 
 if(!empty($_POST["username"]) && !empty($_POST["password"]) ){

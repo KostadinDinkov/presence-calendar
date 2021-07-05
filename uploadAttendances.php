@@ -9,7 +9,7 @@ $meetingTime;
 $meetingName;
 $people;
 
-$connection = new Database("mysql", "localhost", "attendances", "root", "");
+$connection = new Database();
 
 if (($handle = fopen($file, "r")) !== FALSE) {
   $i = 0;
@@ -76,22 +76,16 @@ $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 
 if($fileExtension != "txt" && $fileExtension != "csv") {
   echo "Sorry, only TXT and CSV files are allowed at the moment.";
-  return;
 }
 
   if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $filePath)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["uploadFile"]["name"])). " has been uploaded.";
     parseFile($filePath);
-    return;
 
   } else {
     echo "Sorry, there was an error uploading your file.";
   }
 
-  echo "<br/> Redirecting in 5 seconds";
-
-  sleep(5);
-
-  header('Location: courses.php');
+  header('Location: upload.php?id=' . $_GET['id'] . '');
 
 ?>

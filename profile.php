@@ -5,7 +5,7 @@
 
     function displayCourses(){
         
-        $db = new Database('mysql','localhost','attendances','root',''); 
+        $db = new Database(); 
         $connection = $db->getConnection();
        
         if(isset($_SESSION['role'])){

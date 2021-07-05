@@ -5,7 +5,7 @@
  
   function uploadSchedule($file){
 
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
     $csv = array_map('str_getcsv', file($file));
     $eventTopic = $_POST['topic'];
@@ -45,25 +45,19 @@ $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
 if($fileExtension != "txt" && $fileExtension != "csv") {
   echo "Sorry, only TXT and CSV files are allowed at the moment.";
   echo "<br/>";
-  return;
 }
 
   if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $filePath)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["uploadFile"]["name"])). " has been uploaded.";
     echo "<br/>";
     uploadSchedule($filePath);
-    return;
 
   } else {
     echo "Sorry, there was an error uploading your file.";
     echo "<br/>";
   }
 
-  echo "<br/> Redirecting in 5 seconds";
-
-  sleep(5);
-
-  header('Location: courses.php');
+  header('Location: courses.php?id=' . $_GET['id'] . '');
 
 
 ?>

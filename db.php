@@ -3,7 +3,9 @@
 class Database{
     private $connection;
     
-    public function __construct($dbtype, $host, $dbname, $user, $password){
+    public function __construct(){
+        require_once("db_config.php");
+
         try{
              $this->connection = new PDO("$dbtype:host=$host;dbname=$dbname;",$user,$password);
         }

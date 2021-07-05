@@ -51,11 +51,11 @@ if($fileExtension != "txt" ) {
 function readStudents($file){
         
     require_once('db.php');
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
     $tutors = "db/tutors.txt";
     require_once('db.php');
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
     
     $handle = fopen($file, "r");
@@ -74,10 +74,6 @@ function readStudents($file){
     } 
 }
 
-echo "<br/> Redirecting in 5 seconds";
-
-sleep(5);
-
-header('Location: courses.php');
+header('Location: upload.php');
 
 ?>

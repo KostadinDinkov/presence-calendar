@@ -1,7 +1,7 @@
 <?php
     require("./security.php");
     require("./db.php");
-    $db = new Database('mysql','localhost','attendances','root',''); 
+    $db = new Database(); 
     $connection = $db->getConnection();
 
     

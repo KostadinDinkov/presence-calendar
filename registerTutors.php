@@ -12,13 +12,11 @@ if (file_exists($filePath)) {
 
 if($fileExtension != "txt" && $fileExtension != "csv") {
   echo "Sorry, only TXT and CSV files are allowed at the moment.";
-  return;
 }
 
   if (move_uploaded_file($_FILES["uploadFile"]["tmp_name"], $filePath)) {
     echo "The file ". htmlspecialchars( basename( $_FILES["uploadFile"]["name"])). " has been uploaded.";
     readTutors($filePath);
-    return;
 
   } else {
     echo "Sorry, there was an error uploading your file.";
@@ -47,7 +45,7 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
     function readTutors($file){
   
         require_once('db.php');
-        $db = new Database('mysql','localhost','attendances','root',''); 
+        $db = new Database(); 
         $connection = $db->getConnection();
         $handle = fopen($file, "r");
         if ($handle) {
@@ -65,11 +63,7 @@ if($fileExtension != "txt" && $fileExtension != "csv") {
 
     }
 
-    echo "<br/> Redirecting in 5 seconds";
-
-    sleep(5);
-
-    header('Location: courses.php');
+    header('Location: upload.php');
 
 ?>
 
